@@ -9,86 +9,48 @@ import SwiftUI
 
 struct LoginPageView: View {
     
-    @StateObject var loginData: LoginPageModel = LoginPageModel()
+    @StateObject var loginData: LoginRegisterPageModel = LoginRegisterPageModel()
     
     var body: some View {
         VStack {
             
             // MARK: -"Welcome back" text
-                Text("Welcome\nback")
-                    .font(.custom(customFont, size: 55).bold())
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(height: getRect().height / 5)
-                    .padding()
-                    .background(
-                        ZStack {
-                            // MARK: -Gradient Circle
-                            LinearGradient(colors: [ Color.pink, Color.white.opacity(0.8), Color.green], startPoint: .top, endPoint: .bottom)
-                                .frame(width: 100, height: 100)
-                                .clipShape(Circle())
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                                .padding(.trailing)
-                                .offset(y:-25)
-                                .ignoresSafeArea()
-                            
-                            Circle()
-                                .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
-                                .frame(width: 30, height: 30)
-                                .blur(radius: 3)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-                                .padding(30)
-                            
-                            Circle()
-                                .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
-                                .frame(width: 23, height: 23)
-                                .blur(radius: 2)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                                .padding(.leading, 30)
-                            
-                        }
-                    )
-            
+            Text("Welcome\nback")
+                .font(.custom(customFont, size: 55).bold())
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(height: getRect().height / 5)
+                .padding()
+                .background(
+                    ZStack {
+                        gradientCircles
+                    }
+                )
             
             // MARK: -Login page form
             ScrollView(.vertical, showsIndicators: false){
                 VStack(spacing: 15) {
                     Group {
-                        Text( loginData.regsiterUser ? "Register" : "Login")
+                        Text( loginData.registerUser ? "Register" : "Login")
                             .font(.custom(customFont, size: 22).bold())
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Image(systemName: "lock.fill")
+                        Image(systemName: loginData.isAuthenticated ? "lock.fill" : "lock.open")
                     }
                     
                     
                     // MARK: -Custom Text Field
-                    CustomTextField(icon: "envelope", title: "Email", hint: "ornek@gmail.com", value: $loginData.email, showPassword:.constant(false))
-                        .padding(.top,30)
+                    email
                     
-                    CustomTextField(icon: "lock", title: "Password", hint: "12345678", value: $loginData.password, showPassword: $loginData.showPassword)
-                        .padding(.top,10)
+                    password
                     
                     // MARK: -Register Re-enter Password
-                    if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "Re-Password", hint: "12345678", value: $loginData.rePassword, showPassword: $loginData.showReEnterPassword)
-                            .padding(.top, 10)
-                    }
+                    rePassword
                     // MARK: -Register First Name
-                    if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "First Name", hint: "12345678", value: $loginData.firstName, showPassword:.constant(false))
-                            .padding(.top, 10)
-                    }
+                    firstName
                     // MARK: -Register Last Name
-                    if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "Last Name", hint: "12345678", value: $loginData.lastName, showPassword:.constant(false))
-                            .padding(.top, 10)
-                    }
+                    lastName
                     // MARK: -Register Location
-                    if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "Location", hint: "12345678", value: $loginData.location, showPassword:.constant(false))
-                            .padding(.top, 10)
-                    }
-                    
+                    location
                     // MARK: -Forgot Password Button
                     Button {
                         loginData.ForgotPassword()
@@ -104,18 +66,13 @@ struct LoginPageView: View {
                     
                     // MARK: -Login/Register Button
                     Button {
-                        if loginData.regsiterUser {
+                        if loginData.registerUser {
                             loginData.register()
-                            // MARK: - Register Function
-//                            createUserViewModel.createUserPostMethod(firstName: firstName, lastName: lastName, email: email, password: password, rePassword: rePassword, profileImage: profileImage, location: location)
-                            
                         } else {
-                            //loginData.Login()
-                            // MARK: - LoginFunction
                             loginData.login()
                         }
                     } label: {
-                        Text(loginData.regsiterUser ? "Register" : "Login")
+                        Text(loginData.registerUser ? "Register" : "Login")
                             .font(.custom(customFont, size: 17).bold())
                             .padding(.vertical, 20)
                             .frame(maxWidth: .infinity)
@@ -130,10 +87,10 @@ struct LoginPageView: View {
                     // MARK: -Register Button
                     Button {
                         withAnimation{
-                            (loginData.regsiterUser.toggle())
+                            (loginData.registerUser.toggle())
                         }
                     } label: {
-                        Text(loginData.regsiterUser ? "Back to login" : "Create Account")
+                        Text(loginData.registerUser ? "Back to login" : "Create Account")
                             .font(.custom(customFont, size: 14))
                             .fontWeight(.semibold)
                             .foregroundColor(Color.blue)
@@ -155,7 +112,7 @@ struct LoginPageView: View {
         .background(.blue)
         
         // MARK: - Clearing Data when Changes..
-        .onChange(of: loginData.regsiterUser) { newValue in
+        .onChange(of: loginData.registerUser) { newValue in
             loginData.email = ""
             loginData.password = ""
             loginData.re_Enter_Password = ""
@@ -214,4 +171,69 @@ struct LoginPage_Previews: PreviewProvider {
         LoginPageView()
     }
 }
-
+private extension LoginPageView {
+    
+    // MARK: -Gradient Circle
+    @ViewBuilder var gradientCircles : some View {
+        
+        LinearGradient(colors: [ Color.pink, Color.white.opacity(0.8), Color.green], startPoint: .top, endPoint: .bottom)
+            .frame(width: 100, height: 100)
+            .clipShape(Circle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            .padding(.trailing)
+            .offset(y:-25)
+            .ignoresSafeArea()
+        
+        Circle()
+            .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
+            .frame(width: 30, height: 30)
+            .blur(radius: 3)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+            .padding(30)
+        
+        Circle()
+            .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
+            .frame(width: 23, height: 23)
+            .blur(radius: 2)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding(.leading, 30)
+    }
+    // MARK: - email
+    @ViewBuilder var email : some View {
+        CustomTextField(icon: "envelope", title: "Email", hint: "ornek@gmail.com", value: $loginData.email, showPassword:.constant(false))
+            .padding(.top,30)
+    }
+    // MARK: - password
+    @ViewBuilder var password : some View {
+        CustomTextField(icon: "lock", title: "Password", hint: "12345678", value: $loginData.password, showPassword: $loginData.showPassword)
+            .padding(.top,10)
+    }
+    
+    
+    @ViewBuilder var rePassword : some View {
+        if loginData.registerUser {
+            CustomTextField(icon: "lock", title: "Re-Password", hint: "12345678", value: $loginData.rePassword, showPassword: $loginData.showReEnterPassword)
+                .padding(.top, 10)
+        }
+    }
+    
+    @ViewBuilder var firstName: some View {
+        if loginData.registerUser {
+            CustomTextField(icon: "lock", title: "First Name", hint: "John", value: $loginData.firstName, showPassword:.constant(false))
+                .padding(.top, 10)
+        }
+    }
+    
+    @ViewBuilder var lastName: some View {
+        if loginData.registerUser {
+            CustomTextField(icon: "lock", title: "Last Name", hint: "Doe", value: $loginData.lastName, showPassword:.constant(false))
+                .padding(.top, 10)
+        }
+    }
+    @ViewBuilder var location: some View {
+        if loginData.registerUser {
+            CustomTextField(icon: "lock", title: "Location", hint: "New York", value: $loginData.location, showPassword:.constant(false))
+                .padding(.top, 10)
+        }
+    }
+}

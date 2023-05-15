@@ -45,11 +45,9 @@ class UserService {
                 completion(.failure(.invalidCredentials))
                 return
             }
-            //completion(.success(token)) //print(token)
+            completion(.success(token))
             
         }.resume()
-        
-        
     }
     
 
@@ -84,7 +82,7 @@ class UserService {
                 completion(.failure(.invalidCredentials))
                 return
             }
-            //completion(.success(token)) //print(token)
+            completion(.success(token)) //print(token)
             
         }.resume()
         
