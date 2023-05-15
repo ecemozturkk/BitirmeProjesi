@@ -9,20 +9,7 @@ import SwiftUI
 
 struct LoginPageView: View {
     
-    @State private var firstName = ""
-    @State private var lastName = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var rePassword = ""
-    @State private var profileImage = "-"
-    @State private var location = ""
-    
-    
     @StateObject var loginData: LoginPageModel = LoginPageModel()
-    
-    //let userViewModel = UserViewModel()
-    @ObservedObject private var createUserViewModel = CreateNewUserViewModel()
-    @ObservedObject private var loginUserViewModel = LoginUserViewModel()
     
     var body: some View {
         VStack {
@@ -75,29 +62,30 @@ struct LoginPageView: View {
                     
                     
                     // MARK: -Custom Text Field
-                    CustomTextField(icon: "envelope", title: "Email", hint: "ornek@gmail.com", value: $email, showPassword:.constant(false))
+                    CustomTextField(icon: "envelope", title: "Email", hint: "ornek@gmail.com", value: $loginData.email, showPassword:.constant(false))
                         .padding(.top,30)
-                    CustomTextField(icon: "lock", title: "Password", hint: "12345678", value: $password, showPassword: $loginData.showPassword)
+                    
+                    CustomTextField(icon: "lock", title: "Password", hint: "12345678", value: $loginData.password, showPassword: $loginData.showPassword)
                         .padding(.top,10)
                     
                     // MARK: -Register Re-enter Password
                     if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "Re-Password", hint: "12345678", value: $rePassword, showPassword: $loginData.showReEnterPassword)
+                        CustomTextField(icon: "lock", title: "Re-Password", hint: "12345678", value: $loginData.rePassword, showPassword: $loginData.showReEnterPassword)
                             .padding(.top, 10)
                     }
                     // MARK: -Register First Name
                     if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "First Name", hint: "12345678", value: $firstName, showPassword:.constant(false))
+                        CustomTextField(icon: "lock", title: "First Name", hint: "12345678", value: $loginData.firstName, showPassword:.constant(false))
                             .padding(.top, 10)
                     }
                     // MARK: -Register Last Name
                     if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "Last Name", hint: "12345678", value: $lastName, showPassword:.constant(false))
+                        CustomTextField(icon: "lock", title: "Last Name", hint: "12345678", value: $loginData.lastName, showPassword:.constant(false))
                             .padding(.top, 10)
                     }
                     // MARK: -Register Location
                     if loginData.regsiterUser {
-                        CustomTextField(icon: "lock", title: "Location", hint: "12345678", value: $location, showPassword:.constant(false))
+                        CustomTextField(icon: "lock", title: "Location", hint: "12345678", value: $loginData.location, showPassword:.constant(false))
                             .padding(.top, 10)
                     }
                     
@@ -117,14 +105,14 @@ struct LoginPageView: View {
                     // MARK: -Login/Register Button
                     Button {
                         if loginData.regsiterUser {
-                            //loginData.Register()
+                            loginData.register()
                             // MARK: - Register Function
-                            createUserViewModel.createUserPostMethod(firstName: firstName, lastName: lastName, email: email, password: password, rePassword: rePassword, profileImage: profileImage, location: location)
+//                            createUserViewModel.createUserPostMethod(firstName: firstName, lastName: lastName, email: email, password: password, rePassword: rePassword, profileImage: profileImage, location: location)
                             
                         } else {
                             //loginData.Login()
                             // MARK: - LoginFunction
-                            loginUserViewModel.loginUserPostMethod(email: email, password: password)
+                            loginData.login()
                         }
                     } label: {
                         Text(loginData.regsiterUser ? "Register" : "Login")

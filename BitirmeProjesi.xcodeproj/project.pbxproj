@@ -15,11 +15,9 @@
 		52D6CAA12A12C00500C8A0AC /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAA02A12C00400C8A0AC /* LoginPageView.swift */; };
 		52D6CAA32A12C06800C8A0AC /* LoginPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAA22A12C06800C8A0AC /* LoginPageModel.swift */; };
 		52D6CAA52A12C08700C8A0AC /* LoginUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAA42A12C08700C8A0AC /* LoginUserModel.swift */; };
-		52D6CAA72A12C0A400C8A0AC /* LoginUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAA62A12C0A400C8A0AC /* LoginUserViewModel.swift */; };
 		52D6CAA92A12C0C800C8A0AC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAA82A12C0C800C8A0AC /* UserService.swift */; };
 		52D6CAAB2A12C0E500C8A0AC /* CreateNewUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAAA2A12C0E500C8A0AC /* CreateNewUserModel.swift */; };
 		52D6CAAD2A12C10000C8A0AC /* CreateNewUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAAC2A12C10000C8A0AC /* CreateNewUserResponse.swift */; };
-		52D6CAAF2A12C12800C8A0AC /* CreateNewUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CAAE2A12C12800C8A0AC /* CreateNewUserViewModel.swift */; };
 		52D6CAB32A12C19100C8A0AC /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52D6CAB22A12C19100C8A0AC /* Nunito-Bold.ttf */; };
 		52D6CAB52A12C19A00C8A0AC /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52D6CAB42A12C19A00C8A0AC /* Nunito-Regular.ttf */; };
 		52D6CAB72A12C1A200C8A0AC /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52D6CAB62A12C1A200C8A0AC /* Nunito-SemiBold.ttf */; };
@@ -36,11 +34,9 @@
 		52D6CAA02A12C00400C8A0AC /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
 		52D6CAA22A12C06800C8A0AC /* LoginPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageModel.swift; sourceTree = "<group>"; };
 		52D6CAA42A12C08700C8A0AC /* LoginUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserModel.swift; sourceTree = "<group>"; };
-		52D6CAA62A12C0A400C8A0AC /* LoginUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserViewModel.swift; sourceTree = "<group>"; };
 		52D6CAA82A12C0C800C8A0AC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		52D6CAAA2A12C0E500C8A0AC /* CreateNewUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserModel.swift; sourceTree = "<group>"; };
 		52D6CAAC2A12C10000C8A0AC /* CreateNewUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserResponse.swift; sourceTree = "<group>"; };
-		52D6CAAE2A12C12800C8A0AC /* CreateNewUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserViewModel.swift; sourceTree = "<group>"; };
 		52D6CAB22A12C19100C8A0AC /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		52D6CAB42A12C19A00C8A0AC /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		52D6CAB62A12C1A200C8A0AC /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -141,7 +137,6 @@
 				52D6CAA02A12C00400C8A0AC /* LoginPageView.swift */,
 				52D6CAA22A12C06800C8A0AC /* LoginPageModel.swift */,
 				52D6CAA42A12C08700C8A0AC /* LoginUserModel.swift */,
-				52D6CAA62A12C0A400C8A0AC /* LoginUserViewModel.swift */,
 			);
 			path = LoginPage;
 			sourceTree = "<group>";
@@ -151,7 +146,6 @@
 			children = (
 				52D6CAAA2A12C0E500C8A0AC /* CreateNewUserModel.swift */,
 				52D6CAAC2A12C10000C8A0AC /* CreateNewUserResponse.swift */,
-				52D6CAAE2A12C12800C8A0AC /* CreateNewUserViewModel.swift */,
 			);
 			path = CreateNewUser;
 			sourceTree = "<group>";
@@ -237,7 +231,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D6CAAF2A12C12800C8A0AC /* CreateNewUserViewModel.swift in Sources */,
 				52D6CAB92A12C1C500C8A0AC /* CustomCorners.swift in Sources */,
 				52D6CAAB2A12C0E500C8A0AC /* CreateNewUserModel.swift in Sources */,
 				52D6CAA52A12C08700C8A0AC /* LoginUserModel.swift in Sources */,
@@ -248,7 +241,6 @@
 				52D6CAA92A12C0C800C8A0AC /* UserService.swift in Sources */,
 				52D6CA9F2A12BF9600C8A0AC /* OnBoardingPage.swift in Sources */,
 				52D6CA912A12BF5B00C8A0AC /* BitirmeProjesiApp.swift in Sources */,
-				52D6CAA72A12C0A400C8A0AC /* LoginUserViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

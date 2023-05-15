@@ -12,19 +12,43 @@ class LoginPageModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var showPassword : Bool = false
+    // Register Properties
+    @Published var rePassword: String = ""
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+    @Published var profileImage: String = "-"
+    @Published var location: String = ""
     
-    //Register properties
+    //Other properties
     @Published var regsiterUser: Bool = false
     @Published var re_Enter_Password: String = ""
     @Published var showReEnterPassword: Bool = false
     
+  
+    
     // Login Call
-    func Login () {
-        // Do action here...
+    func login () {
+        UserService().login(email: email, password: password) { result in
+            switch result {
+            case .success(let token):
+                print(token)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
-    func Register() {
-        // Do action here...
+    func register() {
+        
+            UserService().register(email: email, password: password, rePassword: rePassword, firstName: firstName, lastName: lastName, profileImage: profileImage, location: location) { result in
+                switch result {
+                case .success(let token):
+                    print(token)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        
 
     }
     
