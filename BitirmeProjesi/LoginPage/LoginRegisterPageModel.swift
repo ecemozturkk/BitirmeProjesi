@@ -27,9 +27,6 @@ class LoginRegisterPageModel: ObservableObject {
     // Authentication
     @Published var isAuthenticated: Bool = false
     
-    
-
-    
     // Login Call
     func login () {
         
@@ -67,6 +64,15 @@ class LoginRegisterPageModel: ObservableObject {
             }
         
 
+    }
+    
+    func logout() {
+        // remove the token
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "jsonwebtoken")
+        DispatchQueue.main.async {
+            self.isAuthenticated = false
+        }
     }
     
     func ForgotPassword() {

@@ -10,8 +10,13 @@ import SwiftUI
 struct LoginPageView: View {
     
     @StateObject var loginData: LoginRegisterPageModel = LoginRegisterPageModel()
+
+
     
     var body: some View {
+        
+
+        
         VStack {
             
             // MARK: -"Welcome back" text
@@ -34,15 +39,24 @@ struct LoginPageView: View {
                         Text( loginData.registerUser ? "Register" : "Login")
                             .font(.custom(customFont, size: 22).bold())
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Image(systemName: loginData.isAuthenticated ? "lock.fill" : "lock.open")
+                        VStack{
+                            HStack {
+                                Image(systemName: loginData.isAuthenticated ? "lock.fill" : "lock.open")
+                                Button {
+                                    loginData.logout()
+                                } label: {
+                                    Text("Log out")
+                                }
+                            }
+
+                        }
                     }
                     
                     
-                    // MARK: -Custom Text Field
+                    // MARK: -Login/Register email
                     email
-                    
+                    // MARK: -Login/Register password
                     password
-                    
                     // MARK: -Register Re-enter Password
                     rePassword
                     // MARK: -Register First Name
