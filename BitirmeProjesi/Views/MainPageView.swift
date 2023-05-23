@@ -59,6 +59,7 @@ struct MainPageView: View {
             .padding(.bottom, 10)
             
         }
+        .background(Theme.lightWhite.ignoresSafeArea())
     }
 }
 

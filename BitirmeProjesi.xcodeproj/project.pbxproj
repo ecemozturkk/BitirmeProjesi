@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52A1C6912A1C2115005D90BF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1C6902A1C2115005D90BF /* HomeViewModel.swift */; };
+		52A1C6932A1C3F5C005D90BF /* MoreProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */; };
 		52D6CA912A12BF5B00C8A0AC /* BitirmeProjesiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CA902A12BF5B00C8A0AC /* BitirmeProjesiApp.swift */; };
 		52D6CA932A12BF5B00C8A0AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CA922A12BF5B00C8A0AC /* ContentView.swift */; };
 		52D6CA952A12BF5D00C8A0AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D6CA942A12BF5D00C8A0AC /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52A1C6902A1C2115005D90BF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProductsView.swift; sourceTree = "<group>"; };
 		52D6CA8D2A12BF5B00C8A0AC /* BitirmeProjesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitirmeProjesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6CA902A12BF5B00C8A0AC /* BitirmeProjesiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitirmeProjesiApp.swift; sourceTree = "<group>"; };
 		52D6CA922A12BF5B00C8A0AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				52D6CAB02A12C17900C8A0AC /* Shared */,
 				52D6CA962A12BF5D00C8A0AC /* Preview Content */,
 				52D6CABB2A12C34300C8A0AC /* OnBoardingPage */,
+				52A1C6902A1C2115005D90BF /* HomeViewModel.swift */,
+				52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */,
 			);
 			path = BitirmeProjesi;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				52D6CAE42A17AB9100C8A0AC /* ProductDetailsViewModel.swift in Sources */,
 				52D6CAD62A16D47F00C8A0AC /* ProductsModel.swift in Sources */,
 				52D6CAAD2A12C10000C8A0AC /* CreateNewUserResponse.swift in Sources */,
+				52A1C6912A1C2115005D90BF /* HomeViewModel.swift in Sources */,
 				52D6CA932A12BF5B00C8A0AC /* ContentView.swift in Sources */,
 				52D6CAE02A17A6A800C8A0AC /* ProductDetailView.swift in Sources */,
 				52D6CAD32A155DDD00C8A0AC /* Service.swift in Sources */,
@@ -361,6 +368,7 @@
 				52D6CACB2A15548D00C8A0AC /* CategoriesModel.swift in Sources */,
 				52D6CAC52A14251600C8A0AC /* Home.swift in Sources */,
 				52D6CA912A12BF5B00C8A0AC /* BitirmeProjesiApp.swift in Sources */,
+				52A1C6932A1C3F5C005D90BF /* MoreProductsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

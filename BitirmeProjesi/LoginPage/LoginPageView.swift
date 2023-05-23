@@ -11,6 +11,7 @@ struct LoginPageView: View {
     
     @StateObject var loginData: LoginRegisterPageModel = LoginRegisterPageModel()
 
+    @AppStorage("log_Status") var log_Status: Bool = false
 
     
     var body: some View {
@@ -80,8 +81,10 @@ struct LoginPageView: View {
                     
                     // MARK: -Login/Register Button
                     Button {
+                     
                         if loginData.registerUser {
-                            loginData.register()
+                                loginData.register()
+                                log_Status = true
                         } else {
                             loginData.login()
                         }
