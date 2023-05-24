@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52871F1D2A1E4AB2000EF790 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52871F1C2A1E4AB2000EF790 /* SearchView.swift */; };
+		52871F1F2A1EC040000EF790 /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52871F1E2A1EC040000EF790 /* StaggeredGrid.swift */; };
 		52A1C6912A1C2115005D90BF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1C6902A1C2115005D90BF /* HomeViewModel.swift */; };
 		52A1C6932A1C3F5C005D90BF /* MoreProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */; };
 		52D6CA912A12BF5B00C8A0AC /* BitirmeProjesiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CA902A12BF5B00C8A0AC /* BitirmeProjesiApp.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52871F1C2A1E4AB2000EF790 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		52871F1E2A1EC040000EF790 /* StaggeredGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		52A1C6902A1C2115005D90BF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProductsView.swift; sourceTree = "<group>"; };
 		52D6CA8D2A12BF5B00C8A0AC /* BitirmeProjesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitirmeProjesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,8 @@
 				52D6CABB2A12C34300C8A0AC /* OnBoardingPage */,
 				52A1C6902A1C2115005D90BF /* HomeViewModel.swift */,
 				52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */,
+				52871F1C2A1E4AB2000EF790 /* SearchView.swift */,
+				52871F1E2A1EC040000EF790 /* StaggeredGrid.swift */,
 			);
 			path = BitirmeProjesi;
 			sourceTree = "<group>";
@@ -349,11 +355,13 @@
 				52D6CAC82A15518C00C8A0AC /* Product.swift in Sources */,
 				52D6CAD12A155DB200C8A0AC /* CategoriesViewModel.swift in Sources */,
 				52D6CAEA2A17AD9500C8A0AC /* ProductsViewModel.swift in Sources */,
+				52871F1F2A1EC040000EF790 /* StaggeredGrid.swift in Sources */,
 				52D6CAA32A12C06800C8A0AC /* LoginRegisterPageModel.swift in Sources */,
 				52D6CAD82A16D99600C8A0AC /* ProductsView.swift in Sources */,
 				52D6CAE42A17AB9100C8A0AC /* ProductDetailsViewModel.swift in Sources */,
 				52D6CAD62A16D47F00C8A0AC /* ProductsModel.swift in Sources */,
 				52D6CAAD2A12C10000C8A0AC /* CreateNewUserResponse.swift in Sources */,
+				52871F1D2A1E4AB2000EF790 /* SearchView.swift in Sources */,
 				52A1C6912A1C2115005D90BF /* HomeViewModel.swift in Sources */,
 				52D6CA932A12BF5B00C8A0AC /* ContentView.swift in Sources */,
 				52D6CAE02A17A6A800C8A0AC /* ProductDetailView.swift in Sources */,

@@ -16,21 +16,21 @@ struct Home: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 15){
                 //MARK: Search Bar
-                HStack(spacing: 15) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                    TextField("Search", text: .constant(""))
-                        .disabled(true)
+                ZStack {
+                    if homeData.searchActivated {
+                        SearchBar()
+                    } else {
+                        SearchBar().matchedGeometryEffect(id: "SEARCHBAR", in: animation)
+                    }
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal)
-                .background(
-                    Capsule()
-                        .strokeBorder(Color.gray, lineWidth: 0.8)
-                )
                 .frame(width: getRect().width / 1.6)
                 .padding(.horizontal, 25)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation(.easeInOut){
+                        homeData.searchActivated = true
+                    }
+                }
                 
                 
                 //MARK: Text
@@ -82,9 +82,6 @@ struct Home: View {
                     .font(.custom(customFont, size: 18).bold())
                     .foregroundColor(.purple)
                 }
-
-             
-                    
                 
             }.padding(.vertical)
         }
@@ -99,9 +96,18 @@ struct Home: View {
         } content: {
             MoreProductsView()
         }
+        // Displaying Search View
+        .overlay {
+            ZStack {
+                if homeData.searchActivated {
+                    SearchView()
+                        .environmentObject(homeData)
+                }
+            }
+        }
     }
     
-     func ProductCardView(product: Product) -> some View {
+     @ViewBuilder func ProductCardView(product: Product) -> some View {
         VStack(spacing: 10) {
             Image(product.productImage)
                 .resizable()
@@ -129,6 +135,21 @@ struct Home: View {
         
     }
     
+    @ViewBuilder func SearchBar () -> some View {
+        HStack(spacing: 15) {
+            Image(systemName: "magnifyingglass")
+                .font(.title2)
+                .foregroundColor(.gray)
+            TextField("Search", text: .constant(""))
+                .disabled(true)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal)
+        .background(
+            Capsule()
+                .strokeBorder(Color.gray, lineWidth: 0.8)
+        )
+    }
     
     @ViewBuilder func ProductTypeView(type: ProductType) -> some View {
         Button {
@@ -172,50 +193,3 @@ struct Home_Previews: PreviewProvider {
         Home()
     }
 }
-
-//struct Home: View {
-//
-//    @ObservedObject var categoriesViewModel = CategoriesViewModel()
-//    @State var filterCategory = ""
-//    var category: CategoryResult?
-//
-//
-//    var body: some View {
-//        ScrollView(.vertical, showsIndicators: false) {
-//            VStack(spacing: 15){
-//                // Search Bar
-//                HStack(spacing: 15) {
-//                    Image(systemName: "magnifyingglass")
-//                        .font(.title2)
-//                        .foregroundColor(.gray)
-//                    TextField("Search", text: .constant(""))
-//                        .disabled(true)
-//                }
-//                .padding(.vertical, 12)
-//                .padding(.horizontal)
-//                .background(
-//                    Capsule()
-//                        .strokeBorder(Color.gray, lineWidth: 0.8)
-//                )
-//                .frame(width: getRect().width / 1.6)
-//                .padding(.horizontal, 25)
-//
-//                Text("Order online\ncollect in store")
-//                    .font(.custom(customFont, size: 28).bold())
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .padding(.top)
-//                    .padding(.horizontal,25)
-//            }.padding(.vertical)
-//        }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(Color("lightWhiteColor"))
-//    }
-//
-//}
-//
-//struct Home_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Home()
-//    }
-//}
-//

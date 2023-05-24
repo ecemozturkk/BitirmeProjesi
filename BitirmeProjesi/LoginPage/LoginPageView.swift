@@ -87,6 +87,7 @@ struct LoginPageView: View {
                                 log_Status = true
                         } else {
                             loginData.login()
+                            log_Status = true
                         }
                     } label: {
                         Text(loginData.registerUser ? "Register" : "Login")
