@@ -16,7 +16,6 @@ class Service: ObservableObject {
     //MARK: - Request Location
     func fetchLocationRequest (filterCategory:String, endpointType: endpointType, completion: @escaping (Result<CategoriesModel, ErrorType>) -> ()) {
         
-        //{{BASE_URL}}/categories/6424a618eb9f4d7f5fadc466
         let url = Service.baseURL + endpointType.apiTypeString + filterCategory
 
         guard let requestURL = URL(string: url) else {

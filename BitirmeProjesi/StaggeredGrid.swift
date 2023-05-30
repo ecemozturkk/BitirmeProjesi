@@ -33,6 +33,14 @@ struct StaggeredGrid<Content: View,T:Identifiable>: View where T: Hashable {
         }
         return gridArray
     }
+    // Explanation of the setUpList() func
+    /*
+    let list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let colums = 3
+
+    let gridArray = setUpList() // [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+     */
+
     var body: some View {
         HStack(alignment: .top, spacing: 20){
                 ForEach(setUpList(), id: \.self){ columnsData in
@@ -41,8 +49,7 @@ struct StaggeredGrid<Content: View,T:Identifiable>: View where T: Hashable {
                             content(object)
                         }
                     }
-                    .padding(.top, getIndex(values: columnsData) == 1 ? 80 : 0)
-                    
+                    .padding(.top, getIndex(values: columnsData) == 1 ? 30 : 0) // Arama sayfasında Sağ sütunun 30 birim aşağıda görünmesi
                 }
             }
             .padding(.vertical)

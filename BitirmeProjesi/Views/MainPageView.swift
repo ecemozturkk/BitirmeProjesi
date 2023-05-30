@@ -24,7 +24,7 @@ struct MainPageView: View {
             TabView(selection: $currentTab) {
                 Home().tag(Tab.Home)
                 ProductsView().tag(Tab.Liked)
-                Text("Profile").tag(Tab.Profile)
+                ProfilePage().tag(Tab.Profile)
                 Text("Cart").tag(Tab.Cart)
             }
             

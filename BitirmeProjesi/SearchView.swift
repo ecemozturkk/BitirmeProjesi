@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
-    //var animation: Namespace.ID
+    var animation: Namespace.ID
     
     @EnvironmentObject var homeData: HomeViewModel
     
@@ -18,21 +18,23 @@ struct SearchView: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            
             // MARK: Search bar
             HStack(spacing: 20) {
-                // Close button
+                // MARK: Close button
                 Button {
                     withAnimation
                     {
                         homeData.searchActivated = false
-                    }}
-            label: {
+                    }
+                    homeData.searchText = ""
+                } label: {
                 Image(systemName: "arrow.left")
                     .font(.title2)
                     .foregroundColor(.black.opacity(0.7))
             }
                 
-                // Search Bar
+                // MARK: Search Bar
                 HStack(spacing: 15) {
                     Image(systemName: "magnifyingglass")
                         .font(.title2)
@@ -48,22 +50,57 @@ struct SearchView: View {
                     Capsule()
                         .strokeBorder(Color.purple, lineWidth: 1.5)
                 )
-                //.matchedGeometryEffect(id: "SEARCHBAR", in: animation)
+                .matchedGeometryEffect(id: "SEARCHBAR", in: animation)
                 .padding(.trailing, 20)
             }
             .padding([.horizontal, .top])
-            // MARK: Filter Results
-            ScrollView(.vertical, showsIndicators: false) {
-                // Staggered Grid
-                StaggeredGrid(colums: 2, spacing: 20, list: homeData.products) { product in
-                    // Card View
-                    ProductCardView(product: product)
+            .padding(.bottom,10)
+            
+            // Showing Progress if searching
+            // Else showing "no result" image
+            if let products = homeData.searchedProducts {
+                if products.isEmpty {
+                    // No results found
+                    VStack(spacing: 10) {
+                        Image("notFound")
+                            .resizable()
+                            .offset(x: 50)
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.top, 60)
+                        Text("Item Not Found")
+                            .font(.custom(customFont, size: 22).bold())
+                        Text("Try a more generic search term or try looking for alternative products.")
+                            .font(.custom(customFont, size: 16))
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 30)
+
+                    }
+                    .padding()
                     
+                } else {
+                    // MARK: Filter Results
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack (spacing: 0){
+                            // MARK: ".. Found" text
+                            Text("Found \(products.count) results")
+                                .font(.custom(customFont, size: 24).bold())
+                                .padding(.vertical)
+                            // MARK: Staggered Grid
+                            StaggeredGrid(colums: 2, spacing: 20, list: products) { product in
+                                // MARK: Card View
+                                ProductCardView(product: product)
+                            }
+                        }.padding()
+                    }
                 }
-                .padding()
+            } else {
+                ProgressView()
+                    .padding(.top, 30)
+                    .opacity(homeData.searchText == "" ? 0 : 1)
             }
             
-            
+      
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(
@@ -109,6 +146,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView().environmentObject(HomeViewModel())
+        Home()
     }
 }

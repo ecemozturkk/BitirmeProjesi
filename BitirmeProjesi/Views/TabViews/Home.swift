@@ -100,7 +100,7 @@ struct Home: View {
         .overlay {
             ZStack {
                 if homeData.searchActivated {
-                    SearchView()
+                    SearchView(animation: animation)
                         .environmentObject(homeData)
                 }
             }
