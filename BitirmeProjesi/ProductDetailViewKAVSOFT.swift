@@ -11,6 +11,10 @@ struct ProductDetailViewKAVSOFT: View {
     
     var product: Product
     
+    //For Matched Geometry Effect
+    var animation: Namespace.ID
+    
+    
     // Shared data model
     @EnvironmentObject var sharedData : SharedDataModel
     var body: some View {
@@ -56,6 +60,7 @@ struct ProductDetailViewKAVSOFT: View {
                 Image(product.productImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
                     .padding(.horizontal)
                     .frame(maxHeight: getRect().height / 4)
                 
@@ -82,6 +87,21 @@ struct ProductDetailViewKAVSOFT: View {
                     Text(product.description)
                         .font(.custom(customFont, size: 15))
                     
+                    // Takas button
+                    Button {
+                        //
+                    } label: {
+                        Text("Takas İsteği Gönder")
+                            .font(.custom(customFont, size: 20).bold())
+                            .padding(.vertical, 20)
+                            .frame(maxWidth:.infinity)
+                            .foregroundColor(.white)
+                            .background(
+                                Color(.purple)
+                                    .cornerRadius(25)
+                                    .shadow(color: Color.black.opacity(0.3), radius: 25, x: 5, y: 5)
+                            )
+                    }
                 }
                 .padding([.horizontal, .bottom], 20)
                 .padding(.top, 25)
@@ -97,19 +117,16 @@ struct ProductDetailViewKAVSOFT: View {
                     .ignoresSafeArea()
             )
             .padding(.top,40)
-            
         }
         .background(Theme.darkWhite).ignoresSafeArea()
-        
-        
     }
-    
 }
 
 
 
 struct ProductDetailViewKAVSOFT_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailViewKAVSOFT(product: HomeViewModel().products[0]).environmentObject(SharedDataModel())
+        //ProductDetailViewKAVSOFT(product: HomeViewModel().products[0]).environmentObject(SharedDataModel())
+        MainPageView()
     }
 }

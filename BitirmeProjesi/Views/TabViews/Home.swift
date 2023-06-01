@@ -9,8 +9,11 @@ import SwiftUI
 
 struct Home: View {
     
-    @Namespace var animation
+    var animation: Namespace.ID
     @StateObject var homeData: HomeViewModel = HomeViewModel()
+    
+    // Shared data
+    @EnvironmentObject var sharedData: SharedDataModel
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -109,14 +112,24 @@ struct Home: View {
     
      @ViewBuilder func ProductCardView(product: Product) -> some View {
         VStack(spacing: 10) {
-            Image(product.productImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 170, height: 170)
-                .cornerRadius(50)
+            // Adding matched geometry effect
+            ZStack {
+                if sharedData.showDetailProduct {
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
+                }
+            }
+            .frame(width: 170, height: 170)
+            .cornerRadius(50)
             //Moving image to top to look like its fixed at half top
-                .offset(y: -80)
-                .padding(.bottom, -80)
+            .offset(y: -80)
+            .padding(.bottom, -80)
             
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -132,6 +145,13 @@ struct Home: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 22)
         .background(Theme.darkWhite.cornerRadius(25))
+         // Showing product detail when tapped
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                sharedData.detailProduct = product
+                sharedData.showDetailProduct = true
+            }
+        }
         
     }
     
@@ -190,6 +210,7 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        //Home()
+        MainPageView()
     }
 }
