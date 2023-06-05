@@ -72,6 +72,8 @@ struct MainPageView: View {
                 // MARK: Detail page
                 if let product = sharedData.detailProduct, sharedData.showDetailProduct {
                     ProductDetailViewKAVSOFT(product: product, animation: animation).environmentObject(sharedData)
+                    // Adding transitions
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
                 }
             }
         }

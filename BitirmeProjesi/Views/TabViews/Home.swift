@@ -118,6 +118,7 @@ struct Home: View {
                     Image(product.productImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .opacity(0)
                 } else {
                     Image(product.productImage)
                         .resizable()

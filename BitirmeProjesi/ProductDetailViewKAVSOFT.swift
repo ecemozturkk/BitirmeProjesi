@@ -67,6 +67,7 @@ struct ProductDetailViewKAVSOFT: View {
             }
             .frame(height: getRect().height / 2.7)
             .padding(.top, 10)
+            .zIndex(1)
             
             
             // MARK: product details
@@ -116,6 +117,7 @@ struct ProductDetailViewKAVSOFT: View {
                     .clipShape(CustomCorners(corners: [.topLeft,.topRight], radius: 25))
                     .ignoresSafeArea()
             )
+            .zIndex(0)
             .padding(.top,40)
         }
         .background(Theme.darkWhite).ignoresSafeArea()
