@@ -18,9 +18,7 @@ struct CreateProductView: View {
                 productDescription
                 productImage
                 Text(" incomingOffers: [] ?????????")
-                /// KATEGORİ?????????
-                /// TAGS
-                /// ACCEPTED CATEGORİES
+
                 productUsageLevel
                 
                 Section {
