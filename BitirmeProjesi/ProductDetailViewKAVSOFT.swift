@@ -17,6 +17,12 @@ struct ProductDetailViewKAVSOFT: View {
     
     // Shared data model
     @EnvironmentObject var sharedData : SharedDataModel
+    
+    @EnvironmentObject var homeData: HomeViewModel
+    
+    @State private var showActivityIndicator = false
+
+    
     var body: some View {
         
         VStack {
@@ -24,7 +30,6 @@ struct ProductDetailViewKAVSOFT: View {
             // MARK: Title bar and product image
             VStack {
                 Spacer()
-                
                 // Title bar
                 HStack {
                     // Back button
@@ -42,14 +47,14 @@ struct ProductDetailViewKAVSOFT: View {
                     
                     // Like button
                     Button {
-                        //ahsjd
+                        addToLiked()
                     } label: {
                         Image(systemName: "heart.fill")
                             .renderingMode(.template)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 22, height: 22)
-                            .foregroundColor(Color.black.opacity(0.7))
+                            .foregroundColor(isLiked() ?.red : Color.black.opacity(0.7))
                         
                     }
                 }
@@ -88,21 +93,40 @@ struct ProductDetailViewKAVSOFT: View {
                     Text(product.description)
                         .font(.custom(customFont, size: 15))
                     
-                    // Takas button
-                    Button {
-                        //
-                    } label: {
-                        Text("Takas İsteği Gönder")
-                            .font(.custom(customFont, size: 20).bold())
-                            .padding(.vertical, 20)
-                            .frame(maxWidth:.infinity)
-                            .foregroundColor(.white)
-                            .background(
-                                Color(.purple)
-                                    .cornerRadius(25)
-                                    .shadow(color: Color.black.opacity(0.3), radius: 25, x: 5, y: 5)
-                            )
-                    }
+                    // MARK: Takas isteği Button
+                    Button(action: {
+                        showActivityIndicator = true
+                        addToList()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                            showActivityIndicator = false
+                        }
+                    }) {
+                        if showActivityIndicator {
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                        .frame(width: 30, height: 30)
+                                        .padding(.vertical, 15)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        } else {
+                            Text(isAddedToList() ? "İstek Gönderildi" : "Takas İsteği Gönder")
+                                .font(.custom(customFont, size: 20).bold())
+                                .padding(.vertical, 20)
+                                .frame(maxWidth:.infinity)
+                                .foregroundColor(.white)
+                                .background(
+                                    Color(.purple)
+                                        .cornerRadius(25)
+                                        .shadow(color: Color.black.opacity(0.3), radius: 25, x: 5, y: 5)
+                                )
+                        }
+                    }              
+
                 }
                 .padding([.horizontal, .bottom], 20)
                 .padding(.top, 25)
@@ -120,7 +144,46 @@ struct ProductDetailViewKAVSOFT: View {
             .zIndex(0)
             .padding(.top,40)
         }
+        .animation(.easeInOut, value: sharedData.likedProducts)
+        .animation(.easeInOut, value: sharedData.takasProducts)
         .background(Theme.darkWhite).ignoresSafeArea()
+    }
+    
+    func isLiked() -> Bool {
+        return sharedData.likedProducts.contains { product in
+            return self.product.id == product.id
+            
+        }
+    }
+    func isAddedToList() -> Bool {
+        return sharedData.takasProducts.contains { product in
+            return self.product.id == product.id
+            
+        }
+    }
+    
+    func addToLiked() {
+        if let index = sharedData.likedProducts.firstIndex(where: { product in
+            return self.product.id == product.id
+        }) {
+            // Remove from liked
+            sharedData.likedProducts.remove(at: index)
+        } else {
+            // add to liked
+            sharedData.likedProducts.append(product)
+        }
+    }
+    
+    func addToList() {
+        if let index = sharedData.takasProducts.firstIndex(where: { product in
+            return self.product.id == product.id
+        }) {
+            // Remove from liked
+            sharedData.takasProducts.remove(at: index)
+        } else {
+            // add to liked
+            sharedData.takasProducts.append(product)
+        }
     }
 }
 

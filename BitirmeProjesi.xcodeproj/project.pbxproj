@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52037E482A312AC80008D91F /* LikedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52037E472A312AC80008D91F /* LikedPage.swift */; };
 		52871F1D2A1E4AB2000EF790 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52871F1C2A1E4AB2000EF790 /* SearchView.swift */; };
 		52871F1F2A1EC040000EF790 /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52871F1E2A1EC040000EF790 /* StaggeredGrid.swift */; };
 		52871F212A242C48000EF790 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52871F202A242C48000EF790 /* ProfilePage.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52037E472A312AC80008D91F /* LikedPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPage.swift; sourceTree = "<group>"; };
 		52871F1C2A1E4AB2000EF790 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		52871F1E2A1EC040000EF790 /* StaggeredGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		52871F202A242C48000EF790 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				52871F202A242C48000EF790 /* ProfilePage.swift */,
 				52871F222A24302B000EF790 /* ProductDetailViewKAVSOFT.swift */,
 				52871F242A24308B000EF790 /* SharedDataModel.swift */,
+				52037E472A312AC80008D91F /* LikedPage.swift */,
 			);
 			path = BitirmeProjesi;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				52D6CAE22A17AB6300C8A0AC /* StaticJSONMapper.swift in Sources */,
 				52D6CAB92A12C1C500C8A0AC /* CustomCorners.swift in Sources */,
 				52871F232A24302B000EF790 /* ProductDetailViewKAVSOFT.swift in Sources */,
+				52037E482A312AC80008D91F /* LikedPage.swift in Sources */,
 				52D6CAAB2A12C0E500C8A0AC /* CreateNewUserModel.swift in Sources */,
 				52D6CAC22A14178E00C8A0AC /* MainPageView.swift in Sources */,
 				52D6CAA52A12C08700C8A0AC /* LoginUserModel.swift in Sources */,

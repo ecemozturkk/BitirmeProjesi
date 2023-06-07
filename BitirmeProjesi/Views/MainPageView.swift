@@ -31,6 +31,9 @@ struct MainPageView: View {
                     .environmentObject(sharedData)
                     .tag(Tab.Home)
                 ProductsView().tag(Tab.Liked)
+                LikedPage()
+                    .environmentObject(sharedData)
+                    .tag(Tab.Favs)
                 ProfilePage().tag(Tab.Profile)
                 Text("Cart").tag(Tab.Cart)
             }
@@ -91,6 +94,8 @@ enum Tab: String, CaseIterable {
     // Raw value must be image Name in asset
     case Home = "Home"
     case Liked = "Liked"
+    case Favs = "heart"
     case Profile = "Profile"
     case Cart = "Cart"
+    
 }
