@@ -11,5 +11,8 @@ class SharedDataModel : ObservableObject {
     // Detail Product data
     @Published var detailProduct: Product?
     @Published var showDetailProduct: Bool = false
+    
+    // Matched Geometry Effect from Search page
+    @Published var fromSearchPage: Bool = false
 }
 

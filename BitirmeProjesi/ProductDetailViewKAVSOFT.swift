@@ -60,7 +60,7 @@ struct ProductDetailViewKAVSOFT: View {
                 Image(product.productImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
+                    .matchedGeometryEffect(id: "\(product.id)\(sharedData.fromSearchPage ? "SEARCH" : "IMAGE")", in: animation)
                     .padding(.horizontal)
                     .frame(maxHeight: getRect().height / 4)
                 

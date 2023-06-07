@@ -11,6 +11,9 @@ struct SearchView: View {
     
     var animation: Namespace.ID
     
+    // Shared data
+    @EnvironmentObject var sharedData: SharedDataModel
+    
     @EnvironmentObject var homeData: HomeViewModel
     
     // Activating Text Field with the help of FocusState
@@ -28,6 +31,8 @@ struct SearchView: View {
                         homeData.searchActivated = false
                     }
                     homeData.searchText = ""
+                    // RESETTING..
+                    sharedData.fromSearchPage = false
                 } label: {
                 Image(systemName: "arrow.left")
                     .font(.title2)
@@ -116,14 +121,26 @@ struct SearchView: View {
     }
     @ViewBuilder func ProductCardView(product: Product) -> some View {
        VStack(spacing: 10) {
-           Image(product.productImage)
-               .resizable()
-               .aspectRatio(contentMode: .fit)
-               //.frame(width: 170, height: 170)
-               .cornerRadius(50)
+           ZStack {
+               if sharedData.showDetailProduct {
+                   Image(product.productImage)
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       //.frame(width: 170, height: 170)
+                       .cornerRadius(50)
+                       .opacity(0)
+               } else {
+                   Image(product.productImage)
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       //.frame(width: 170, height: 170)
+                       .cornerRadius(50)
+                       .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
+               }
+           }
            //Moving image to top to look like its fixed at half top
-               .offset(y: -50)
-               .padding(.bottom, -50)
+           .offset(y: -50)
+           .padding(.bottom, -50)
            
            Text(product.title)
                .font(.custom(customFont, size: 18))
@@ -140,6 +157,13 @@ struct SearchView: View {
        .padding(.bottom, 22)
        .background(Theme.darkWhite.cornerRadius(25))
        .padding(.top, 50)
+       .onTapGesture {
+           withAnimation(.easeInOut) {
+               sharedData.fromSearchPage = true
+               sharedData.detailProduct = product
+               sharedData.showDetailProduct = true
+           }
+       }
        
    }
 }
