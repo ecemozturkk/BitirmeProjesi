@@ -35,7 +35,9 @@ struct MainPageView: View {
                     .environmentObject(sharedData)
                     .tag(Tab.Favs)
                 ProfilePage().tag(Tab.Profile)
-                Text("Cart").tag(Tab.Cart)
+                ListPage()
+                    .environmentObject(sharedData)
+                    .tag(Tab.Cart)
             }
             
             // Custom Tab Bar

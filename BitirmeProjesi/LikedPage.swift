@@ -41,7 +41,7 @@ struct LikedPage: View {
 
                     }
                     // checking if liked products are empty..
-                    if sharedData.likedProducts .isEmpty {
+                    if sharedData.likedProducts.isEmpty {
                         Group {
                             Image("EmptyLiked")
                                 .resizable()
@@ -51,7 +51,7 @@ struct LikedPage: View {
                             Text("Henüz bir ürün beğenmedin!")
                                 .font(.custom(customFont, size: 25))
                                 .fontWeight(.semibold)
-                            Text("Favori ürünleri kaydetmek için her ürün sayfasındaki beğen düğmesine bas :)")
+                            Text("Favori ürünleri kaydetmek için her ürün sayfasındaki kalp düğmesine bas :)")
                                 .font(.custom(customFont, size: 18))
                                 .foregroundColor(.gray)
                                 .padding(.horizontal)
