@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ProfilePage: View {
+    
+    @StateObject var sharedData: SharedDataModel = SharedDataModel()
+    
+    // Animation Namespace
+    @Namespace var animation
+    
     @AppStorage("log_status") var log_status: Bool = false
     var body: some View {
         
@@ -47,10 +53,13 @@ struct ProfilePage: View {
                     .padding(.top, 25)
                     
                     customNavigationLink(title: "Edit Profile"){
-                        Text("")
-                            .navigationTitle("Edit Profile")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color("HomeBG").ignoresSafeArea())
+                        ProfileDetailPage(animation: animation)
+                            .environmentObject(sharedData)
+                   
+//                        Text("")
+//                            .navigationTitle("Edit Profile")
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                            .background(Color("HomeBG").ignoresSafeArea())
                     }
                     customNavigationLink(title: "Shopping address"){
                         Text("")

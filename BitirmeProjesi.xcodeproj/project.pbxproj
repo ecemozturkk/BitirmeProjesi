@@ -15,6 +15,7 @@
 		52871F252A24308B000EF790 /* SharedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52871F242A24308B000EF790 /* SharedDataModel.swift */; };
 		52A1C6912A1C2115005D90BF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1C6902A1C2115005D90BF /* HomeViewModel.swift */; };
 		52A1C6932A1C3F5C005D90BF /* MoreProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */; };
+		52C48C022A326BE4006B3B8A /* ProfileDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C48C012A326BE4006B3B8A /* ProfileDetailPage.swift */; };
 		52D1330E2A313ECA008F7538 /* ListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1330D2A313ECA008F7538 /* ListPage.swift */; };
 		52D6CA912A12BF5B00C8A0AC /* BitirmeProjesiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CA902A12BF5B00C8A0AC /* BitirmeProjesiApp.swift */; };
 		52D6CA932A12BF5B00C8A0AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6CA922A12BF5B00C8A0AC /* ContentView.swift */; };
@@ -60,6 +61,7 @@
 		52871F242A24308B000EF790 /* SharedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataModel.swift; sourceTree = "<group>"; };
 		52A1C6902A1C2115005D90BF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		52A1C6922A1C3F5C005D90BF /* MoreProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProductsView.swift; sourceTree = "<group>"; };
+		52C48C012A326BE4006B3B8A /* ProfileDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailPage.swift; sourceTree = "<group>"; };
 		52D1330D2A313ECA008F7538 /* ListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPage.swift; sourceTree = "<group>"; };
 		52D6CA8D2A12BF5B00C8A0AC /* BitirmeProjesi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitirmeProjesi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6CA902A12BF5B00C8A0AC /* BitirmeProjesiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitirmeProjesiApp.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				52871F242A24308B000EF790 /* SharedDataModel.swift */,
 				52037E472A312AC80008D91F /* LikedPage.swift */,
 				52D1330D2A313ECA008F7538 /* ListPage.swift */,
+				52C48C012A326BE4006B3B8A /* ProfileDetailPage.swift */,
 			);
 			path = BitirmeProjesi;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				52D6CAB92A12C1C500C8A0AC /* CustomCorners.swift in Sources */,
 				52871F232A24302B000EF790 /* ProductDetailViewKAVSOFT.swift in Sources */,
 				52037E482A312AC80008D91F /* LikedPage.swift in Sources */,
+				52C48C022A326BE4006B3B8A /* ProfileDetailPage.swift in Sources */,
 				52D6CAAB2A12C0E500C8A0AC /* CreateNewUserModel.swift in Sources */,
 				52D1330E2A313ECA008F7538 /* ListPage.swift in Sources */,
 				52D6CAC22A14178E00C8A0AC /* MainPageView.swift in Sources */,
