@@ -97,7 +97,8 @@ struct Home: View {
         .sheet(isPresented: $homeData.showMoreProductsOnType) {
             //
         } content: {
-            MoreProductsView()
+            //MoreProductsView()
+            ProductsView()
         }
         // Displaying Search View
         .overlay {

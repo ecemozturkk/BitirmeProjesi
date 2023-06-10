@@ -30,10 +30,12 @@ struct MainPageView: View {
                 Home(animation: animation)
                     .environmentObject(sharedData)
                     .tag(Tab.Home)
-                ProductsView().tag(Tab.Liked)
                 LikedPage()
                     .environmentObject(sharedData)
                     .tag(Tab.Favs)
+                // ÜRÜN EKLEME SAYFASI
+                AddProductView().tag(Tab.Plus)
+                
                 ProfilePage().tag(Tab.Profile)
                 ListPage()
                     .environmentObject(sharedData)
@@ -95,8 +97,8 @@ struct MainPageView_Previews: PreviewProvider {
 enum Tab: String, CaseIterable {
     // Raw value must be image Name in asset
     case Home = "Home"
-    case Liked = "Liked"
-    case Favs = "heart"
+    case Favs = "heart2"
+    case Plus = "Plus"
     case Profile = "Profile"
     case Cart = "Cart"
     

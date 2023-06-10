@@ -34,10 +34,10 @@ struct SearchView: View {
                     // RESETTING..
                     sharedData.fromSearchPage = false
                 } label: {
-                Image(systemName: "arrow.left")
-                    .font(.title2)
-                    .foregroundColor(.black.opacity(0.7))
-            }
+                    Image(systemName: "arrow.left")
+                        .font(.title2)
+                        .foregroundColor(.black.opacity(0.7))
+                }
                 
                 // MARK: Search Bar
                 HStack(spacing: 15) {
@@ -79,7 +79,7 @@ struct SearchView: View {
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 30)
-
+                        
                     }
                     .padding()
                     
@@ -105,7 +105,7 @@ struct SearchView: View {
                     .opacity(homeData.searchText == "" ? 0 : 1)
             }
             
-      
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(
@@ -120,52 +120,52 @@ struct SearchView: View {
         }
     }
     @ViewBuilder func ProductCardView(product: Product) -> some View {
-       VStack(spacing: 10) {
-           ZStack {
-               if sharedData.showDetailProduct {
-                   Image(product.productImage)
-                       .resizable()
-                       .aspectRatio(contentMode: .fit)
-                       //.frame(width: 170, height: 170)
-                       .cornerRadius(50)
-                       .opacity(0)
-               } else {
-                   Image(product.productImage)
-                       .resizable()
-                       .aspectRatio(contentMode: .fit)
-                       //.frame(width: 170, height: 170)
-                       .cornerRadius(50)
-                       .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
-               }
-           }
-           //Moving image to top to look like its fixed at half top
-           .offset(y: -50)
-           .padding(.bottom, -50)
-           
-           Text(product.title)
-               .font(.custom(customFont, size: 18))
-               .fontWeight(.semibold)
-               .padding(.top)
-           Text(product.subtitle)
-               .font(.custom(customFont, size: 14))
-               .foregroundColor(.gray)
-           Text(product.usageLevel)
-               .font(.custom(customFont, size: 14))
-               .fontWeight(.medium)
-       }
-       .padding(.horizontal, 20)
-       .padding(.bottom, 22)
-       .background(Theme.darkWhite.cornerRadius(25))
-       .padding(.top, 50)
-       .onTapGesture {
-           withAnimation(.easeInOut) {
-               sharedData.fromSearchPage = true
-               sharedData.detailProduct = product
-               sharedData.showDetailProduct = true
-           }
-       }
-       
-   }
+        VStack(spacing: 10) {
+            ZStack {
+                if sharedData.showDetailProduct {
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    //.frame(width: 170, height: 170)
+                        .cornerRadius(50)
+                        .opacity(0)
+                } else {
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    //.frame(width: 170, height: 170)
+                        .cornerRadius(50)
+                        .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
+                }
+            }
+            //Moving image to top to look like its fixed at half top
+            .offset(y: -50)
+            .padding(.bottom, -50)
+            
+            Text(product.title)
+                .font(.custom(customFont, size: 18))
+                .fontWeight(.semibold)
+                .padding(.top)
+            Text(product.subtitle)
+                .font(.custom(customFont, size: 14))
+                .foregroundColor(.gray)
+            Text(product.usageLevel)
+                .font(.custom(customFont, size: 14))
+                .fontWeight(.medium)
+        }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 22)
+        .background(Theme.darkWhite.cornerRadius(25))
+        .padding(.top, 50)
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                sharedData.fromSearchPage = true
+                sharedData.detailProduct = product
+                sharedData.showDetailProduct = true
+            }
+        }
+        
+    }
 }
 
 struct SearchView_Previews: PreviewProvider {

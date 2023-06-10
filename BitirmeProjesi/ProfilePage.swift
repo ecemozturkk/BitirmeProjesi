@@ -20,7 +20,7 @@ struct ProfilePage: View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
                 VStack{
-                    Text("My Profile")
+                    Text("Hesap")
                         .font(.custom(customFont, size: 28).bold())
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     VStack(spacing: 15){
@@ -34,14 +34,7 @@ struct ProfilePage: View {
                         Text("Rosina Doe")
                             .font(.custom(customFont, size: 16))
                             .fontWeight(.semibold)
-                        HStack(alignment: .top, spacing: 10){
-                            Image(systemName: "location.north.circle.fill")
-                                .foregroundColor(.gray)
-                                .rotationEffect(.init(degrees: 180))
-                            Text("Address: 43 Oxford Road\nM13 4GR\nManchester, UK")
-                                .font(.custom(customFont, size: 15))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
+                      
                         
                     }
                     .padding([.horizontal, .bottom])
@@ -52,7 +45,7 @@ struct ProfilePage: View {
                     .padding()
                     .padding(.top, 25)
                     
-                    customNavigationLink(title: "Edit Profile"){
+                    customNavigationLink(title: "Profil Sayfam"){
                         ProfileDetailPage(animation: animation)
                             .environmentObject(sharedData)
                    
@@ -113,10 +106,18 @@ struct ProfilePage: View {
             }
             .navigationBarHidden(true)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(
-            Color("HomeBG")
-                .ignoresSafeArea()
-            )
+            .background(Color("HomeBG").ignoresSafeArea())
+            .overlay {
+                ZStack {
+                    // MARK: Detail page
+                    if let product = sharedData.detailProduct, sharedData.showDetailProduct {
+                        ProductDetailViewKAVSOFT(product: product, animation: animation).environmentObject(sharedData)
+                        // Adding transitions
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
+                    }
+                }
+            }
+     
         }
 
     }

@@ -17,37 +17,61 @@ struct ProfileDetailPage: View {
     @EnvironmentObject var sharedData: SharedDataModel
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 15){
+        
+        VStack(spacing: 0){
+            
+
+            
+            ScrollView(.vertical, showsIndicators: false) {
                 
                 //MARK: Text
-                Text("Order online\ncollect in store")
+                Image("profileImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 130, height: 130)
+                    .clipShape(Circle())
+                Text("Ecem Öztürk")
                     .font(.custom(customFont, size: 28).bold())
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top)
                     .padding(.horizontal,25)
                 
-                // MARK: Products Page
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 25) {
-                        ForEach(homeData.products) { product in
-                            // Product Card View
-                            ProductCardView(product: product)
-                        }
-                    }
-                    .padding(.horizontal,25)
-                    .padding(.bottom)
-                    .padding(.top, 80)//Moving image to top to look like its fixed at half top
-                }
-                .padding(.top, 30)
+                Spacer()
                 
-            }.padding(.vertical)
+                HStack(spacing: 10){
+                    Image(systemName: "location.fill")
+                        .foregroundColor(.gray)
+                    Text("BURSA")
+                        .font(.custom(customFont, size: 15))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }.offset(x: 160)
+                
+                Spacer()
+                
+                HStack(spacing: 10){
+                    Image(systemName: "envelope")
+                        .foregroundColor(.gray)
+                    Text("ecem@gmail.com")
+                        .font(.custom(customFont, size: 15))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }.offset(x: 120)
+                
+                
+                VStack (spacing: 0){
+                    // MARK: Staggered Grid
+                    StaggeredGrid(colums: 2, spacing: 20 ,list: homeData.products) { product in
+                        // MARK: Card View
+                        ProductCardView(product: product)                        }
+                }
+                
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(Color("lightWhiteColor"))
+        
     }
     
-     @ViewBuilder func ProductCardView(product: Product) -> some View {
+    @ViewBuilder func ProductCardView(product: Product) -> some View {
         VStack(spacing: 10) {
             // Adding matched geometry effect
             ZStack {
@@ -63,11 +87,9 @@ struct ProfileDetailPage: View {
                         .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
                 }
             }
-            .frame(width: 170, height: 170)
+            .frame(width: 160, height: 170)
             .cornerRadius(50)
-            //Moving image to top to look like its fixed at half top
-            .offset(y: -80)
-            .padding(.bottom, -80)
+            .padding(.top, 10)
             
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -83,7 +105,8 @@ struct ProfileDetailPage: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 22)
         .background(Theme.darkWhite.cornerRadius(25))
-         // Showing product detail when tapped
+        .padding(.top, 10)
+        // Showing product detail when tapped
         .onTapGesture {
             withAnimation(.easeInOut) {
                 sharedData.detailProduct = product
