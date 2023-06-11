@@ -37,19 +37,6 @@ struct CreateProductView: View {
     }
 }
 
-/*
- {
-   "name": "Elektro Gitarrrrr",
-   "description": "Arkadasimin gitarisi o yuzden satiyorum. Ne yaniii",
-   "image": "-",
-   "categoryId": ["6424a618eb9f4d7f5fadc466", "6424a620eb9f4d7f5fadc468"],
-   "usageLevel": 2,
-   "tags": ["music", "akustik", "anfi"],
-   "incomingOffers": [],
-   "acceptedCategories": ["6424a620eb9f4d7f5fadc468"]
- }
- */
-
 
 struct CreateProductView_Previews: PreviewProvider {
     static var previews: some View {
