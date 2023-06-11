@@ -28,109 +28,142 @@ struct AddProductView: View {
     
     @State private var showActivityIndicator = false
     
+    @State private var showAlert = false
     
     var body: some View {
         
         
         
-        NavigationView {
-            
-            Form {
-                Section(header: Text("Ürün Bilgileri:").font(.system(size: 15))) {
-                    TextField("Ürün Adını Giriniz", text: $productName)
-                    TextField("Ürün Açıklaması Giriniz", text: $description)
-                    Picker("Ürünün Yenilik Durumu", selection: $condition) {
-                        Text("Yeni").tag("Yeni")
-                        Text("Kullanılmış").tag("Kullanılmış")
-                        Text("Yenilenmiş").tag("Yenilenmiş")
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                }
+        VStack {
+            NavigationView {
                 
-                Section {
-                    VStack {
-                        Text("Ürün Görseli Ekle")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)), Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-                            .cornerRadius(16)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 20)
-                            .onTapGesture {
-                                showSheet = true
+                Form {
+                    Section(header: Text("Ürün Bilgileri:").font(.system(size: 15))) {
+                        TextField("Ürün Adını Giriniz", text: $productName)
+                        TextField("Ürün Açıklaması Giriniz", text: $description)
+                        Picker("Ürünün Yenilik Durumu", selection: $condition) {
+                            Text("Yeni").tag("Yeni")
+                            Text("Kullanılmış").tag("Kullanılmış")
+                            Text("Yenilenmiş").tag("Yenilenmiş")
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                    
+                    Section {
+                        VStack {
+                            Text("Ürün Görseli Ekle")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50)
+                                .background( LinearGradient(
+                                    gradient: Gradient(colors: [Color.gray, Color(.lightGray)]),
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                                .cornerRadius(16)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+                                .onTapGesture {
+                                    showSheet = true
+                                }
+                            
+                            if let image = image {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding()
+                                    .frame(height: 250)
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(25)
                             }
-                        
-                        if let image = image {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .padding()
-                                .frame(height: 250)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(25)
+                        }
+                        .sheet(isPresented: $showSheet) {
+                            // Pick an image from the photo library:
+                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                            
                         }
                     }
-                    .sheet(isPresented: $showSheet) {
-                        // Pick an image from the photo library:
-                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
-                        
-                    }
-                }
-                
-                Section(header: Text("ÜRÜNÜN AİT OLDUĞY KATEGORİLERİ SEÇ:").font(.system(size: 15))) {
-                    ForEach(Fruit.allCases, id: \.self) { fruit in
-                        Toggle(isOn: self.bindingForFruit(fruit)) {
-                            Text(fruit.rawValue)
-                        }
-                        .toggleStyle(CheckmarkToggleStyle())
-                        .onChange(of: self.fruits[self.indexForFruit(fruit)]) { newValue in
-                            if newValue {
-                                selectedFruits.append(fruit)
-                            } else {
-                                if let index = selectedFruits.firstIndex(of: fruit) {
-                                    selectedFruits.remove(at: index)
+                    
+                    Section(header: Text("ÜRÜNÜN AİT OLDUĞY KATEGORİLERİ SEÇ:").font(.system(size: 15))) {
+                        ForEach(Fruit.allCases, id: \.self) { fruit in
+                            Toggle(isOn: self.bindingForFruit(fruit)) {
+                                Text(fruit.rawValue)
+                            }
+                            .toggleStyle(CheckmarkToggleStyle())
+                            .onChange(of: self.fruits[self.indexForFruit(fruit)]) { newValue in
+                                if newValue {
+                                    selectedFruits.append(fruit)
+                                } else {
+                                    if let index = selectedFruits.firstIndex(of: fruit) {
+                                        selectedFruits.remove(at: index)
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                
-                // MARK: Takas isteği Button
-                Button(action: {
-                    showActivityIndicator = true
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                        showActivityIndicator = false
-                    }
-                }) {
-                    if showActivityIndicator {
-                        VStack {
-                            Spacer()
-                            HStack {
+                    // MARK: Ürün ekle button
+                    Button(action: {
+                        showActivityIndicator = true
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                            showActivityIndicator = false
+                            
+                            // Ürün ekleme işlemleri tamamlandı, uyarıyı göster
+                            showAlert = true
+                            
+                            // 2 saniye sonra uyarıyı kapat
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                showAlert = false
+                            }
+                        }
+                    }) {
+                        if showActivityIndicator {
+                            VStack {
                                 Spacer()
-                                ProgressView()
-                                    .frame(width: 30, height: 30)
-                                    .padding(.vertical, 15)
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                        .frame(width: 30, height: 30)
+                                        .padding(.vertical, 15)
+                                    Spacer()
+                                }
                                 Spacer()
                             }
-                            Spacer()
+                        } else {
+                            Text("ÜRÜNÜ EKLE")
+                                .font(.custom(customFont, size: 20).bold())
+                                .padding(.vertical, 20)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(.white)
+                                .background(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.gray, Color(.lightGray)]),
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                )
+                                .cornerRadius(20)
+                                .shadow(color: Color.black.opacity(0.3), radius: 25, x: 5, y: 5)
                         }
-                    } else {
-                        Text("ÜRÜNÜ EKLE")
-                            .font(.custom(customFont, size: 20).bold())
-                            .padding(.vertical, 20)
-                            .frame(maxWidth:.infinity)
-                            .foregroundColor(.white)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.262745098, green: 0.0862745098, blue: 0.8588235294, alpha: 1)), Color(#colorLiteral(red: 0.5647058824, green: 0.462745098, blue: 0.9058823529, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-                            .cornerRadius(20)
-                            .shadow(color: Color.black.opacity(0.3), radius: 25, x:5,y:5)
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Başarılı"),
+                            message: Text("Ürün ekleme işlemi başarıyla tamamlandı."),
+                            dismissButton: .default(Text("Tamam"))
+                        )
                     }
                 }
+                .navigationTitle("ÜRÜN EKLE")
+                
             }
-            .navigationTitle("ÜRÜN EKLE")
             
         }
+        .background(
+            Theme.lightWhite
+            .ignoresSafeArea()
+        )
         
         
     }
@@ -170,4 +203,3 @@ struct AddProductView_Previews: PreviewProvider {
         AddProductView()
     }
 }
-

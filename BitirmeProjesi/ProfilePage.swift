@@ -31,15 +31,15 @@ struct ProfilePage: View {
                             .clipShape(Circle())
                             .offset(y: -30)
                             .padding(.bottom, -30)
-                        Text("Rosina Doe")
-                            .font(.custom(customFont, size: 16))
+                        Text("Merve Yılmaz")
+                            .font(.custom(customFont, size: 20))
                             .fontWeight(.semibold)
                       
                         
                     }
                     .padding([.horizontal, .bottom])
                     .background(
-                        Color.white
+                        Theme.darkWhite
                             .cornerRadius(12)
                     )
                     .padding()
@@ -48,11 +48,6 @@ struct ProfilePage: View {
                     customNavigationLink(title: "Profil Sayfam"){
                         ProfileDetailPage(animation: animation)
                             .environmentObject(sharedData)
-                   
-//                        Text("")
-//                            .navigationTitle("Edit Profile")
-//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                            .background(Color("HomeBG").ignoresSafeArea())
                     }
                     customNavigationLink(title: "Shopping address"){
                         Text("")
@@ -94,7 +89,7 @@ struct ProfilePage: View {
                             .foregroundColor(.red)
                             .padding()
                             .background(
-                                Color.white
+                                Theme.darkWhite
                                     .cornerRadius(12)
                             )
                             .padding(.horizontal)
@@ -116,7 +111,7 @@ struct ProfilePage: View {
                             .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
                     }
                 }
-            }
+            }.background(Theme.lightWhite)
      
         }
 
@@ -135,7 +130,7 @@ struct ProfilePage: View {
         .foregroundColor(.black)
         .padding()
         .background(
-            Color.white
+            Theme.darkWhite
                 .cornerRadius(12)
         )
         .padding(.horizontal)

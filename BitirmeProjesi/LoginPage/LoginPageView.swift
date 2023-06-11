@@ -21,7 +21,7 @@ struct LoginPageView: View {
         VStack {
             
             // MARK: -"Welcome back" text
-            Text("Welcome\nback")
+            Text("Hoş\nGeldin!")
                 .font(.custom(customFont, size: 55).bold())
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -37,20 +37,20 @@ struct LoginPageView: View {
             ScrollView(.vertical, showsIndicators: false){
                 VStack(spacing: 15) {
                     Group {
-                        Text( loginData.registerUser ? "Register" : "Login")
+                        Text( loginData.registerUser ? "Kayıt OL" : "Giriş Yap")
                             .font(.custom(customFont, size: 22).bold())
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        VStack{
-                            HStack {
-                                Image(systemName: loginData.isAuthenticated ? "lock.fill" : "lock.open")
-                                Button {
-                                    loginData.logout()
-                                } label: {
-                                    Text("Log out")
-                                }
-                            }
-
-                        }
+//                        VStack{
+//                            HStack {
+//                                Image(systemName: loginData.isAuthenticated ? "lock.fill" : "lock.open")
+//                                Button {
+//                                    loginData.logout()
+//                                } label: {
+//                                    Text("Log out")
+//                                }
+//                            }
+//
+//                        }
                     }
                     
                     
@@ -70,10 +70,10 @@ struct LoginPageView: View {
                     Button {
                         loginData.ForgotPassword()
                     } label: {
-                        Text("Forgot password?")
+                        Text("Şifreni mi unuttun?")
                             .font(.custom(customFont, size: 14))
                             .fontWeight(.semibold)
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color.purple)
                     }
                     .padding(.top, 8)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -90,12 +90,12 @@ struct LoginPageView: View {
                             log_Status = true
                         }
                     } label: {
-                        Text(loginData.registerUser ? "Register" : "Login")
+                        Text(loginData.registerUser ? "Kayıt Ol" : "Giriş Yap")
                             .font(.custom(customFont, size: 17).bold())
                             .padding(.vertical, 20)
                             .frame(maxWidth: .infinity)
                             .foregroundColor(Color.white)
-                            .background(.blue)
+                            .background(.purple)
                             .cornerRadius(15)
                             .shadow(color: Color.black.opacity(0.3), radius: 5, x:5, y:5)
                     }
@@ -108,10 +108,10 @@ struct LoginPageView: View {
                             (loginData.registerUser.toggle())
                         }
                     } label: {
-                        Text(loginData.registerUser ? "Back to login" : "Create Account")
+                        Text(loginData.registerUser ? "Giriş Yap" : "Yeni Hesap Oluştur")
                             .font(.custom(customFont, size: 14))
                             .fontWeight(.semibold)
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color.purple)
                     }
                     .padding(.top, 8)
                     
@@ -127,7 +127,7 @@ struct LoginPageView: View {
             )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.blue)
+        .background(.purple)
         
         // MARK: - Clearing Data when Changes..
         .onChange(of: loginData.registerUser) { newValue in
@@ -170,9 +170,9 @@ struct LoginPageView: View {
                     Button(action: {
                         showPassword.wrappedValue.toggle()
                     }, label: {
-                        Text(showPassword.wrappedValue ? "Hide" : "Show")
+                        Text(showPassword.wrappedValue ? "Gizle" : "Göster")
                             .font(.custom(customFont, size: 13).bold())
-                            .foregroundColor(.blue)
+                            .foregroundColor(.purple)
                     })
                     .offset(y:8)
                 }
@@ -194,7 +194,7 @@ private extension LoginPageView {
     // MARK: -Gradient Circle
     @ViewBuilder var gradientCircles : some View {
         
-        LinearGradient(colors: [ Color.pink, Color.white.opacity(0.8), Color.green], startPoint: .top, endPoint: .bottom)
+        LinearGradient(colors: [ Color.purple, Theme.lightWhite.opacity(0.8), Theme.darkWhite], startPoint: .top, endPoint: .bottom)
             .frame(width: 100, height: 100)
             .clipShape(Circle())
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
@@ -223,34 +223,34 @@ private extension LoginPageView {
     }
     // MARK: - password
     @ViewBuilder var password : some View {
-        CustomTextField(icon: "lock", title: "Password", hint: "12345678", value: $loginData.password, showPassword: $loginData.showPassword)
+        CustomTextField(icon: "lock", title: "Şifre", hint: "********", value: $loginData.password, showPassword: $loginData.showPassword)
             .padding(.top,10)
     }
     
     
     @ViewBuilder var rePassword : some View {
         if loginData.registerUser {
-            CustomTextField(icon: "lock", title: "Re-Password", hint: "12345678", value: $loginData.rePassword, showPassword: $loginData.showReEnterPassword)
+            CustomTextField(icon: "lock", title: "Şifre Tekrar", hint: "********", value: $loginData.rePassword, showPassword: $loginData.showReEnterPassword)
                 .padding(.top, 10)
         }
     }
     
     @ViewBuilder var firstName: some View {
         if loginData.registerUser {
-            CustomTextField(icon: "lock", title: "First Name", hint: "John", value: $loginData.firstName, showPassword:.constant(false))
+            CustomTextField(icon: "lock", title: "İsim", hint: "Merve", value: $loginData.firstName, showPassword:.constant(false))
                 .padding(.top, 10)
         }
     }
     
     @ViewBuilder var lastName: some View {
         if loginData.registerUser {
-            CustomTextField(icon: "lock", title: "Last Name", hint: "Doe", value: $loginData.lastName, showPassword:.constant(false))
+            CustomTextField(icon: "lock", title: "Soyisim", hint: "Yılmaz", value: $loginData.lastName, showPassword:.constant(false))
                 .padding(.top, 10)
         }
     }
     @ViewBuilder var location: some View {
         if loginData.registerUser {
-            CustomTextField(icon: "lock", title: "Location", hint: "New York", value: $loginData.location, showPassword:.constant(false))
+            CustomTextField(icon: "lock", title: "Konum", hint: "İstanbul", value: $loginData.location, showPassword:.constant(false))
                 .padding(.top, 10)
         }
     }

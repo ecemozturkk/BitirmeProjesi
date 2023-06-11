@@ -37,7 +37,7 @@ struct Home: View {
                 
                 
                 //MARK: Text
-                Text("Order online\ncollect in store")
+                Text("Yeni eklenen ürünleri seç\ntakaslamaya başla!")
                     .font(.custom(customFont, size: 28).bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top)
@@ -80,7 +80,7 @@ struct Home: View {
                     Label {
                         Image(systemName: "arrow.right")
                     } icon: {
-                        Text("See More")
+                        Text("Daha Fazlasını Gör")
                     }
                     .font(.custom(customFont, size: 18).bold())
                     .foregroundColor(.purple)
@@ -137,7 +137,7 @@ struct Home: View {
                 .font(.custom(customFont, size: 18))
                 .fontWeight(.semibold)
                 .padding(.top)
-            Text(product.subtitle)
+            Text(product.brand)
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
             Text(product.usageLevel)

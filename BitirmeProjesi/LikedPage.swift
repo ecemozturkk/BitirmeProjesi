@@ -105,7 +105,7 @@ struct LikedPage: View {
                     .font(.custom(customFont, size: 18).bold())
                     .lineLimit(1)
                 
-                Text(product.subtitle)
+                Text(product.brand)
                     .font(.custom(customFont, size: 17))
                     .fontWeight(.semibold)
                     .foregroundColor(.purple)

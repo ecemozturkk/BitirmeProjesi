@@ -191,9 +191,9 @@
 				52871F222A24302B000EF790 /* ProductDetailViewKAVSOFT.swift */,
 				52871F242A24308B000EF790 /* SharedDataModel.swift */,
 				52037E472A312AC80008D91F /* LikedPage.swift */,
-				52D1330D2A313ECA008F7538 /* ListPage.swift */,
 				52C48C012A326BE4006B3B8A /* ProfileDetailPage.swift */,
 				525397D32A350334001CAAC3 /* AddProduct */,
+				52DB44022A356B3700627EE9 /* Offers */,
 				525397DB2A351DC1001CAAC3 /* Deneme.swift */,
 			);
 			path = BitirmeProjesi;
@@ -332,6 +332,14 @@
 				52D6CAEC2A17BF3E00C8A0AC /* CreateProductView.swift */,
 			);
 			path = Products;
+			sourceTree = "<group>";
+		};
+		52DB44022A356B3700627EE9 /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				52D1330D2A313ECA008F7538 /* ListPage.swift */,
+			);
+			path = Offers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

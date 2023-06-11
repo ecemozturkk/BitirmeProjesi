@@ -13,11 +13,13 @@ struct Product: Identifiable, Hashable {
     var id = UUID().uuidString
     var type: ProductType
     var title: String
-    var subtitle: String
+    var brand: String
     var description: String = ""
     var usageLevel : String
     var productImage: String = ""
     var quantity: Int = 1
+    var profileImage: String = ""
+    var nameSurname: String = ""
 }
 
 // Product Types

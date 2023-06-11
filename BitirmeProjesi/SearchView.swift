@@ -146,7 +146,7 @@ struct SearchView: View {
                 .font(.custom(customFont, size: 18))
                 .fontWeight(.semibold)
                 .padding(.top)
-            Text(product.subtitle)
+            Text(product.brand)
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
             Text(product.usageLevel)

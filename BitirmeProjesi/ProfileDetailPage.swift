@@ -59,7 +59,7 @@ struct ProfileDetailPage: View {
                 
                 VStack (spacing: 0){
                     // MARK: Staggered Grid
-                    StaggeredGrid(colums: 2, spacing: 20 ,list: homeData.products) { product in
+                    StaggeredGrid(colums: 2, spacing: 20 ,list: homeData.userProducts) { product in
                         // MARK: Card View
                         ProductCardView(product: product)                        }
                 }
@@ -95,7 +95,7 @@ struct ProfileDetailPage: View {
                 .font(.custom(customFont, size: 18))
                 .fontWeight(.semibold)
                 .padding(.top)
-            Text(product.subtitle)
+            Text(product.brand)
                 .font(.custom(customFont, size: 14))
                 .foregroundColor(.gray)
             Text(product.usageLevel)

@@ -21,20 +21,5 @@ class SharedDataModel : ObservableObject {
     // "Takasla" request products
     @Published var takasProducts: [Product] = []
     
-    // Calculating total price
-//    func getTotalPrice() -> String {
-//        
-//        var total:Int = 0
-//        
-//        takasProducts.forEach { product in
-//            let price = product.price.replacingOccurrences(of: "$", with: "") as NSString
-//            
-//            let quantity = product.quantity
-//            let priceTotal = quantity * price.integerValue
-//            
-//            total += priceTotal
-//        }
-//        return "$\(total)"
-//    }
 }
 

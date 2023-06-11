@@ -14,9 +14,13 @@ struct ProductDetailViewKAVSOFT: View {
     //For Matched Geometry Effect
     var animation: Namespace.ID
     
-    
+    @State private var isProfileDetailPagePresented = false
+
     // Shared data model
     @EnvironmentObject var sharedData : SharedDataModel
+    //@StateObject var sharedData: SharedDataModel = SharedDataModel()
+
+    
     
     @EnvironmentObject var homeData: HomeViewModel
     
@@ -81,9 +85,29 @@ struct ProductDetailViewKAVSOFT: View {
                 VStack (alignment: .leading, spacing: 15) {
                     // Product title
                     Text(product.title)
-                        .font(.custom(customFont, size: 20).bold())
-                    // Product subtitle
-                    Text(product.subtitle)
+                        .font(.custom(customFont, size: 25).bold())
+                    
+                    HStack {
+                        Image(product.profileImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                        //.offset(y: -30)
+                        //.padding(.bottom, -30)
+                        
+                        Text(product.nameSurname)
+                            .font(.custom(customFont, size: 20))
+                            .onTapGesture {
+                                    isProfileDetailPagePresented = true
+                                }
+                                .sheet(isPresented: $isProfileDetailPagePresented) {
+                                    ProfileDetailPage(animation: animation).environmentObject(sharedData)
+                                }
+                    }
+                        
+                    // Product brand
+                    Text(product.brand)
                         .font(.custom(customFont, size: 18))
                         .foregroundColor(.gray)
                     // Product usage level
@@ -125,7 +149,7 @@ struct ProductDetailViewKAVSOFT: View {
                                         .shadow(color: Color.black.opacity(0.3), radius: 25, x: 5, y: 5)
                                 )
                         }
-                    }              
+                    }
 
                 }
                 .padding([.horizontal, .bottom], 20)
@@ -191,7 +215,6 @@ struct ProductDetailViewKAVSOFT: View {
 
 struct ProductDetailViewKAVSOFT_Previews: PreviewProvider {
     static var previews: some View {
-        //ProductDetailViewKAVSOFT(product: HomeViewModel().products[0]).environmentObject(SharedDataModel())
         MainPageView()
     }
 }

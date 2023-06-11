@@ -15,17 +15,32 @@ class HomeViewModel: ObservableObject {
     
     // Sample Products..
     @Published var products: [Product] = [
-        Product(type: .Müzik, title:"Gitar", subtitle:"Yamaha",description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar"),
-        Product(type: .Spor, title:"Raket", subtitle:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "raket"),
-        Product(type: .Müzik, title:"Plak", subtitle:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "plak"),
-        Product(type: .Giyim, title:"Pantolon", subtitle:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "pantolon"),
-        Product(type: .Giyim, title:"Tişört", subtitle:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "tshirt"),
-        Product(type: .Giyim, title:"Ayakkabı", subtitle:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "sneakers"),
-        Product(type: .Spor, title:"Raket", subtitle:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "raket2"),
-        Product(type: .Müzik, title:"Gitar", subtitle:"Yamaha", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar"),
-        Product(type: .Müzik, title:"Gitar", subtitle:"Yamaha", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar")
+        Product(type: .Müzik, title:"Gitar", brand:"Yamaha",description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Spor, title:"Raket", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "raket", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Müzik, title:"Plak", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "plak", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Giyim, title:"Pantolon", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "pantolon", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Giyim, title:"Tişört", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "tshirt", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Giyim, title:"Ayakkabı", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "sneakers", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Spor, title:"Raket", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "raket2", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Müzik, title:"Gitar", brand:"Yamaha", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar", profileImage: "profileImage", nameSurname: "Ali Yılmaz"),
+        Product(type: .Müzik, title:"Gitar", brand:"Yamaha", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar", profileImage: "profileImage", nameSurname: "Ali Yılmaz")
+    ]
+    
+    // User Products
+    @Published var userProducts: [Product] = [
+        Product(type: .Müzik, title:"UserGitar", brand:"Yamaha",description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar", profileImage: "profileImage"),
+        Product(type: .Spor, title:"Raket", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "raket", profileImage: "profileImage"),
+        Product(type: .Müzik, title:"Plak", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "plak", profileImage: "profileImage"),
+        Product(type: .Giyim, title:"Pantolon", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "pantolon", profileImage: "profileImage"),
+        Product(type: .Giyim, title:"Tişört", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "tshirt", profileImage: "profileImage"),
+        Product(type: .Giyim, title:"Ayakkabı", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "sneakers", profileImage: "profileImage"),
+        Product(type: .Spor, title:"Raket", brand:"Marka", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "raket2", profileImage: "profileImage"),
+        Product(type: .Müzik, title:"Gitar", brand:"Yamaha", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar", profileImage: "profileImage"),
+        Product(type: .Müzik, title:"Gitar", brand:"Yamaha", description: "Ürünü iki yıl önce aldım, çok kullanmadım bir sorunu yoktur." ,usageLevel:"Az kullanıldı", productImage: "guitar", profileImage: "profileImage")
 
     ]
+    
+    
     
     // Filtered Products
     @Published var filteredProducts: [Product] = []
