@@ -11,16 +11,15 @@ struct ProductDetailView: View {
     let productId : String
     @StateObject private var viewModel = ProductDetailsViewModel()
     
+    @State private var showActivityIndicator = false
+
+    
     var body: some View {
         ZStack {
             background
             
             ScrollView {
                 VStack(alignment: .leading,spacing: 18) {
-                    Button("AAAAAAA") {
-                        print(viewModel.productInfo?.data.image ?? "GELMİYOR")
-                    }
-                    
                     Group {
                         if let uiImage = convertBase64StringToImage(imageBase64String: viewModel.productInfo?.data.image ?? "BULUNAMADI") {
                             Image(uiImage: uiImage)
@@ -40,15 +39,48 @@ struct ProductDetailView: View {
                     
                     Group {
                         general
-                        link
                     } .padding(.horizontal, 8)
                         .padding(.vertical, 18)
                         .background(Theme.darkWhite, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    // MARK: Takas isteği Button
+                    Button(action: {
+                        showActivityIndicator = true
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                            showActivityIndicator = false
+                        }
+                    }) {
+                        if showActivityIndicator {
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                        .frame(width: 30, height: 30)
+                                        .padding(.vertical, 15)
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        } else {
+                            Text("Takas İsteği Gönder")
+                                .font(.custom(customFont, size: 20).bold())
+                                .padding(.vertical, 20)
+                                .frame(maxWidth:.infinity)
+                                .foregroundColor(.white)
+                                .background(
+                                    Color(.purple)
+                                        .cornerRadius(25)
+                                        .shadow(color: Color.black.opacity(0.3), radius: 25, x: 5, y: 5)
+                                )
+                        }
+                    }
+
                 }
                 .padding()
             }
         }
-        .navigationTitle("Details")
+        .navigationTitle("Ürün Detayı")
         .onAppear{
             viewModel.fetchProductDetails(for: productId)
         }
@@ -83,32 +115,13 @@ private extension ProductDetailView {
     var background: some View {
         Theme.lightWhite.ignoresSafeArea(edges: .top)
     }
-    
-    var link: some View {
-        
-        Link(destination: .init(string: "www.xasdasd")!) {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Takasla API")
-                    .foregroundColor(.black)
-                    .font(
-                        .system(.body, design: .rounded)
-                        .weight(.semibold)
-                    )
-                
-                Text("https........")
-            }
-            Spacer()
-            
-            Image(systemName: "link").font(.system(.title3, design: .rounded))
-        }
-    }
 }
 
 private extension ProductDetailView {
     
     @ViewBuilder
     var productName: some View {
-        Text("Product Name")
+        Text("Ürün Adı ")
             .font(
                 .system(.body, design: .rounded)
                 .weight(.semibold)
@@ -120,7 +133,7 @@ private extension ProductDetailView {
     
     @ViewBuilder
     var productDescription: some View {
-        Text("Description")
+        Text("Ürün Açıklaması")
             .font(
                 .system(.body, design: .rounded)
                 .weight(.semibold)
@@ -133,7 +146,7 @@ private extension ProductDetailView {
     
     @ViewBuilder
     var username : some View {
-        Text("Username")
+        Text("Kullanıcı Adı Soyadı")
             .font(
                 .system(.body, design: .rounded)
                 .weight(.semibold)
@@ -149,7 +162,7 @@ private extension ProductDetailView {
     
     @ViewBuilder
     var location : some View {
-        Text("Location")
+        Text("Konum")
             .font(
                 .system(.body, design: .rounded)
                 .weight(.semibold)
@@ -162,7 +175,7 @@ private extension ProductDetailView {
     @ViewBuilder
     var general: some View {
         VStack(alignment: .leading, spacing: 8) {
-            PillView(id: viewModel.productInfo?.data.id ?? "id not found" )
+            
             Group {
                 productName
                 productDescription

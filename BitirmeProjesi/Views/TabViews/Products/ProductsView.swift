@@ -25,7 +25,7 @@ struct ProductsView: View {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(viewModel.products, id:\.id) { product in
                             NavigationLink {
-                                ProductDetailView(productId: product.id!) // .id şeklinde yazdı videoda
+                                ProductDetailView(productId: product.id!)
                             } label: {
                                 ProductItemView(product: product)
                             }
@@ -34,12 +34,7 @@ struct ProductsView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Products")
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    create
-                }
-            }
+            .navigationTitle("Daha Fazla Ürün")
             .onAppear{
                 viewModel.fetchProducts()
             }
@@ -64,14 +59,6 @@ struct ProductsView_Previews: PreviewProvider {
 private extension ProductsView {
     var background: some View {
         Theme.lightWhite.ignoresSafeArea(edges: .top)
-
-    }
-    var create: some View {
-        Button {
-            shouldShowCreate.toggle()
-        } label: {
-            Image(systemName: "plus").font(.system(.headline, design: .rounded).bold())
-        }
 
     }
 }

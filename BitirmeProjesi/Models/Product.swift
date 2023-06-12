@@ -13,7 +13,6 @@ struct Product: Identifiable, Hashable {
     var id = UUID().uuidString
     var type: ProductType
     var title: String
-    var brand: String
     var description: String = ""
     var usageLevel : String
     var productImage: String = ""
@@ -24,9 +23,12 @@ struct Product: Identifiable, Hashable {
 
 // Product Types
 enum ProductType: String, CaseIterable { // ProductType
+    case Elektronik = "Elektronik"
     case Giyim = "Giyim"
-    case Müzik = "Müzik"
-    case Hobi = "Hobi"
     case Spor = "Spor"
+    case Hobi = "Hobi"
+    case Bahçe = "Bahçe"
     case Diğer = "Diğer"
 }
+
+

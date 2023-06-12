@@ -18,7 +18,7 @@ class UserService {
     func login(email:String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void ) {
         
         
-        guard let url = URL(string: "http://localhost:6061/users/login") else {
+        guard let url = URL(string: "http://localhost:6060/users/login") else {
             completion(.failure(.custom(errorMessage: "Error: cannot create URL")))
             return
         }
@@ -55,7 +55,7 @@ class UserService {
     func register(email:String, password: String, rePassword: String ,firstName: String ,lastName: String,profileImage: String,location: String,completion: @escaping (Result<String, AuthenticationError>) -> Void ) {
         
         
-        guard let url = URL(string: "http://localhost:6061/users") else {
+        guard let url = URL(string: "http://localhost:6060/users") else {
             completion(.failure(.custom(errorMessage: "Error: cannot create URL")))
             return
         }
