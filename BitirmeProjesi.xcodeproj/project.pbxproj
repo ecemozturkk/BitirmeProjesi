@@ -292,7 +292,6 @@
 		52D6CAC62A15517300C8A0AC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52871F242A24308B000EF790 /* SharedDataModel.swift */,
 				52D6CAC72A15518C00C8A0AC /* Product.swift */,
 			);
 			path = Models;
@@ -343,6 +342,7 @@
 		52DB44032A35C28700627EE9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				52871F242A24308B000EF790 /* SharedDataModel.swift */,
 				52D6CAC92A15547D00C8A0AC /* Categories */,
 				52D6CAD42A16D16300C8A0AC /* Products */,
 				52A1C6902A1C2115005D90BF /* HomeViewModel.swift */,
